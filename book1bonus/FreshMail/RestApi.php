@@ -182,7 +182,6 @@ class RestApi
         }
 
         if (is_array($this->response) == false) {
-            throw new Exception('Invalid json response');
         }
 
         return $this->response;
