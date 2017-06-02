@@ -1,17 +1,23 @@
 <?php
 
-require '/FreshMail/RestApi.php';
-require '/FreshMail/RestException.php';
-require 'config.php';
+require './FreshMail/RestApi.php';
+require './FreshMail/RestException.php';
+require './config.php';
 
 $rest = new \FreshMail\RestApi();
 
 $rest->setApiKey(FM_API_KEY);
 $rest->setApiSecret(FM_API_SECRET);
 
+$email = $_POST["freshmail_email"];
+$name = $_POST["name"];
+
 $data = [
-    'subscriber' => $_POST["freshmail_email"],
-    'list' => 'yc5s8mm4m6'
+    'subscriber' => $email,
+    'list' => 'yc5s8mm4m6',
+    'custom_fields' => [
+        'name' => '$name ',
+    ]
 ];
 
 try {
