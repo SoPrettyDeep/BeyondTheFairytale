@@ -16,7 +16,7 @@ $data = [
     'subscriber' => $email,
     'list' => 'yc5s8mm4m6',
     'custom_fields' => [
-        'name' => '$name ',
+        'name' => $name,
     ]
 ];
 
