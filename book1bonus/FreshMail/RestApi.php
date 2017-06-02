@@ -43,7 +43,7 @@ class RestApi
     /**
      * @var array
      */
-    private $errors = [];
+    private $errors = array();
 
     /**
      * Get errors.
@@ -131,7 +131,7 @@ class RestApi
         return $this;
     }
 
-    public function doRequest($strUrl, $arrParams = [], $returnRawResponse = false)
+    public function doRequest($strUrl, $arrParams = array(), $returnRawResponse = false)
     {
         if (empty($arrParams)) {
             $strPostData = '';
@@ -143,7 +143,7 @@ class RestApi
 
         $apiSignature = sha1($this->strApiKey . '/' . self::PREFIX . $strUrl . $strPostData . $this->strApiSecret);
 
-        $headers = [];
+        $headers = array();
         $headers[] = 'X-Rest-ApiKey: ' . $this->strApiKey;
         $headers[] = 'X-Rest-ApiSign: ' . $apiSignature;
 
@@ -156,6 +156,8 @@ class RestApi
         curl_setopt($cUrl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($cUrl, CURLOPT_HEADER, true);
         curl_setopt($cUrl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($cUrl, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows; U; Windows NT 5.1; ru; rv:1.9.1.5) Gecko/20091102 Firefox/3.5.5 GTB6"); 
+        curl_setopt($cUrl, CURLOPT_SSL_VERIFYPEER, false); 
 
         if ($strPostData) {
             curl_setopt($cUrl, CURLOPT_POST, true);
@@ -168,9 +170,8 @@ class RestApi
         if ($returnRawResponse) {
             return $this->rawResponse;
         }
-
         $this->getResponseFromHeaders($cUrl);
-
+        curl_close($cUrl);
         if ($this->httpCode != 200) {
             $this->errors = $this->response['errors'];
 
@@ -182,6 +183,7 @@ class RestApi
         }
 
         if (is_array($this->response) == false) {
+            throw new Exception('Invalid json response');
         }
 
         return $this->response;
@@ -198,9 +200,9 @@ class RestApi
             preg_match('/filename\=\"([a-zA-Z0-9\.]+)\"/', $headers, $fileName);
             file_put_contents(self::DEFAULT_FILE_PATH . $fileName[1], substr($this->rawResponse, $headerSize));
 
-            $this->response = [
+            $this->response = array(
                 'path' => self::DEFAULT_FILE_PATH . $fileName[1]
-            ];
+            );
         } else {
             $this->response = json_decode(substr($this->rawResponse, $headerSize), true);
         }
