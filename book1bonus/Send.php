@@ -21,9 +21,9 @@ $data = [
 ];
 
 try {
-    $response = $rest->doRequest('mail', $data);
+    $response = $rest->doRequest('subscriber/add', $data);
 
-    echo 'Mail sent, received data: ';
+    echo 'Subscriber added, received data: ';
     print_r($response);
     echo PHP_EOL;
 } catch (Exception $e) {
