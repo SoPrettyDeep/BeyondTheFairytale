@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('.submit').on('click', function () {
         $.ajax({
             url: '/book1bonus/Send.php',
-            method: 'GET',
+            method: 'POST',
             dataType: 'JSON',
             data: {
                 'email': $('input[name="email"]').val(),

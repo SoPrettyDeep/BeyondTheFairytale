@@ -9,8 +9,8 @@ $rest = new \FreshMail\RestApi();
 $rest->setApiKey(FM_API_KEY);
 $rest->setApiSecret(FM_API_SECRET);
 
-$email = $_GET["email"];
-$name = $_GET["name"];
+$email = $_POST["email"];
+$name = $_POST["name"];
 
 $data = array(
     'email' => $email,
