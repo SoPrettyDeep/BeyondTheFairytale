@@ -40,7 +40,7 @@ $(document).ready(function () {
     });
     $('.submit').on('click', function () {
         $.ajax({
-            url: '/book1bonus/Send.php',
+            url: '/book1bonus/FreshMail/Send.php',
             method: 'POST',
             dataType: 'JSON',
             data: {
