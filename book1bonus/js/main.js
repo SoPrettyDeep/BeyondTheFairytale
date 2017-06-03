@@ -38,17 +38,5 @@ $(document).ready(function () {
             });
         }
     });
-    $('.submit').on('click', function () {
-        $.ajax({
-            url: '/book1bonus/FreshMail/Send.php',
-            method: 'POST',
-            dataType: 'JSON',
-            data: {
-                'email': $('input[name="email"]').val(),
-                'name': $('input[name="name"]').val()
-            }
-        }).done(function(data) {
-            document.location.replace("thankyou.html");
-        });
   });
 });
