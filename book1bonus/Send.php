@@ -1,7 +1,7 @@
 <?php
 
-require './RestApi.php';
-require './RestException.php';
+require './FreshMail/RestApi.php';
+require './FreshMail/RestException.php';
 require './config.php';
 
 $rest = new \FreshMail\RestApi();
@@ -23,9 +23,12 @@ $data = array(
 try {
     $response = $rest->doRequest('subscriber/add', $data);
 
-    echo 'Subscriber added, received data: ';
-    print_r($response);
-    echo PHP_EOL;
+//    echo 'Subscriber added, received data: ';
+//    print_r($response);
+//    echo PHP_EOL;
 } catch (Exception $e) {
-    echo 'Error message: ' . $e->getMessage() . ', Error code: ' . $e->getCode() . ', HTTP code: ' . $rest->getHttpCode() . PHP_EOL;
+//    echo 'Error message: ' . $e->getMessage() . ', Error code: ' . $e->getCode() . ', HTTP code: ' . $rest->getHttpCode() . PHP_EOL;
+} finally {
+    readfile("/path/to/file");
+    echo file_get_contents("thankyou.html");
 }
