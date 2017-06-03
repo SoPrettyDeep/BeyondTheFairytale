@@ -1,8 +1,8 @@
 <?php
 
-require './book1bonus/FreshMail/RestApi.php';
-require './book1bonus/FreshMail/RestException.php';
-require './book1bonus/config.php';
+require './RestApi.php';
+require './RestException.php';
+require './config.php';
 
 $rest = new \FreshMail\RestApi();
 
