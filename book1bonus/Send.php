@@ -29,6 +29,5 @@ try {
 } catch (Exception $e) {
 //    echo 'Error message: ' . $e->getMessage() . ', Error code: ' . $e->getCode() . ', HTTP code: ' . $rest->getHttpCode() . PHP_EOL;
 } finally {
-    readfile("/path/to/file");
-    echo file_get_contents("thankyou.html");
+    readfile("thankyou.html");
 }
