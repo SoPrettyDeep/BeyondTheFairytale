@@ -40,14 +40,14 @@ $(document).ready(function () {
     });
     $('.submit').on('click', function () {
         $.ajax({
-            url: 'beyondthefairytale.com/book1bonus/Send.php',
+            url: '/book1bonus/Send.php',
             method: 'POST',
             data: {
                 'email': $('input[name="email"]').val(),
                 'name': $('input[name="name"]').val()
             }
         }).done(function(data) {
-            document.location.replace("beyondthefairytale.com/book1bonus/thankyou.html");
+            document.location.replace("thankyou.html");
         });
   });
 });
