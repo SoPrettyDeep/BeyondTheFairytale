@@ -246,6 +246,9 @@ button.submit i {
 	input.text {
 		padding: 20px 5px;
 	}
+	#subscribe {
+		height: 700px;
+	}
 	#subscribe h2 {
 		font-size: 1.5em;
 	}
